@@ -1,4 +1,4 @@
-package com.varvet.barcodereadersample
+package com.geynen.librogiuseppe
 
 import android.content.Intent
 import android.os.Bundle
@@ -8,7 +8,7 @@ import android.widget.Button
 import android.widget.TextView
 import com.google.android.gms.common.api.CommonStatusCodes
 import com.google.android.gms.vision.barcode.Barcode
-import com.varvet.barcodereadersample.barcode.BarcodeCaptureActivity
+import com.geynen.librogiuseppe.barcode.BarcodeCaptureActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -33,6 +33,12 @@ class MainActivity : AppCompatActivity() {
                     val barcode = data.getParcelableExtra<Barcode>(BarcodeCaptureActivity.BarcodeObject)
                     val p = barcode.cornerPoints
                     mResultTextView.text = barcode.displayValue
+
+                    val intent = Intent(this, AnimacionActivity::class.java)
+                    // To pass any data to next activity
+                    intent.putExtra("barcode", barcode.displayValue)
+                    // start your next activity
+                    startActivity(intent)
                 } else
                     mResultTextView.setText(R.string.no_barcode_captured)
             } else

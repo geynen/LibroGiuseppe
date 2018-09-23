@@ -16,7 +16,7 @@
  * This file and all BarcodeXXX and CameraXXX files in this project edited by
  * Daniell Algar (included due to copyright reason)
  */
-package com.varvet.barcodereadersample.barcode;
+package com.geynen.librogiuseppe.barcode;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
@@ -44,9 +44,9 @@ import com.google.android.gms.vision.MultiProcessor;
 import com.google.android.gms.vision.barcode.Barcode;
 import com.google.android.gms.vision.barcode.BarcodeDetector;
 
-import com.varvet.barcodereadersample.R;
-import com.varvet.barcodereadersample.camera.CameraSource;
-import com.varvet.barcodereadersample.camera.CameraSourcePreview;
+import com.geynen.librogiuseppe.R;
+import com.geynen.librogiuseppe.camera.CameraSource;
+import com.geynen.librogiuseppe.camera.CameraSourcePreview;
 
 import java.io.IOException;
 

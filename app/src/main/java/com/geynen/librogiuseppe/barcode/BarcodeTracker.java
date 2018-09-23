@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.varvet.barcodereadersample.barcode;
+package com.geynen.librogiuseppe.barcode;
 
 import android.content.Context;
 
