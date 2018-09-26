@@ -17,6 +17,10 @@ import android.support.design.widget.Snackbar
 import android.support.v7.app.AlertDialog
 import android.util.Log
 import android.view.View
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
+import android.widget.ImageView
+import android.widget.TextView
 import butterknife.BindView
 import butterknife.ButterKnife
 import com.facebook.drawee.backends.pipeline.Fresco
@@ -36,8 +40,12 @@ class AnimacionActivity : AppCompatActivity() {
 
     @JvmField @BindView(R.id.main_container)
     var mainContainer: ConstraintLayout? = null
+    @JvmField @BindView(R.id.imgv_bg)
+    var imgvBg: ImageView? = null
     @JvmField @BindView(R.id.imgv_photo)
     var imgvPhoto: SimpleDraweeView? = null
+    @JvmField @BindView(R.id.imgv_calavera)
+    var imgvCalavera: SimpleDraweeView? = null
     @JvmField @BindView(R.id.fab_share)
     var fabSharePhoto: FloatingActionButton? = null
     @JvmField @BindView(R.id.imgv_lineas)
@@ -60,10 +68,10 @@ class AnimacionActivity : AppCompatActivity() {
         imgvLineas?.controller = controller
 
         imgvPhoto?.setOnClickListener {
-            //val bitmap = loadBitmapFromView(findViewById(R.id.imgv_photo), 350, 450)
-            //saveImage(bitmap)
+            val bitmap = loadBitmapFromView(findViewById(R.id.main_container), 350, 450)
+            saveImage(bitmap)
 
-            validatePermissions()
+            //validatePermissions()
         }
         fabSharePhoto?.setOnClickListener {
             val shareIntent: Intent = Intent().apply {
@@ -73,6 +81,18 @@ class AnimacionActivity : AppCompatActivity() {
             }
             startActivity(Intent.createChooser(shareIntent, resources.getText(R.string.send_to)))
         }
+
+        // Create shake effect from xml resource
+        val shake = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.shake_calavera)
+        // View element to be shaken
+        // Perform animation
+        imgvCalavera?.startAnimation(shake)
+
+        // Create shake effect from xml resource
+        val shake_bg = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.shake_calavera)
+        // View element to be shaken
+        // Perform animation
+        imgvBg?.startAnimation(shake_bg)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -166,9 +186,9 @@ class AnimacionActivity : AppCompatActivity() {
 
         fun loadBitmapFromView(v: View, width: Int, height: Int): Bitmap {
             Log.e("loadBitmapFromView","loadBitmapFromView")
-            val b = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888)
+            val b = Bitmap.createBitmap(v.width, v.height, Bitmap.Config.ARGB_8888)
             val c = Canvas(b)
-            v.layout(0, 0, v.layoutParams.width, v.layoutParams.height)
+            v.layout(0, 0, v.width, v.height)
             v.draw(c)
             return b
         }

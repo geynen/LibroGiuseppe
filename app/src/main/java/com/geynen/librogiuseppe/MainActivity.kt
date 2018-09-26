@@ -24,6 +24,12 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(applicationContext, BarcodeCaptureActivity::class.java)
             startActivityForResult(intent, BARCODE_READER_REQUEST_CODE)
         }
+
+        val intent = Intent(this, AnimacionActivity::class.java)
+        // To pass any data to next activity
+        //intent.putExtra("barcode", barcode.displayValue)
+        // start your next activity
+        startActivity(intent)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
