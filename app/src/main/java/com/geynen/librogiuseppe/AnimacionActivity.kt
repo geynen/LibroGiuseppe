@@ -21,6 +21,7 @@ import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import butterknife.BindView
 import butterknife.ButterKnife
 import com.facebook.drawee.backends.pipeline.Fresco
@@ -53,6 +54,7 @@ class AnimacionActivity : AppCompatActivity() {
 
     private val TAKE_PHOTO_REQUEST = 101
     private var mCurrentPhotoPath: String = ""
+    private var mCaptureScreenPath: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -68,18 +70,13 @@ class AnimacionActivity : AppCompatActivity() {
         imgvLineas?.controller = controller
 
         imgvPhoto?.setOnClickListener {
-            val bitmap = loadBitmapFromView(findViewById(R.id.main_container), 350, 450)
-            saveImage(bitmap)
-
-            //validatePermissions()
+            validatePermissions()
         }
         fabSharePhoto?.setOnClickListener {
-            val shareIntent: Intent = Intent().apply {
-                action = Intent.ACTION_SEND
-                //putExtra(Intent.EXTRA_STREAM, uriToImage)
-                type = "image/jpeg"
-            }
-            startActivity(Intent.createChooser(shareIntent, resources.getText(R.string.send_to)))
+
+            //Toast.makeText(this,resources.getText(R.string.send_to_toast),Toast.LENGTH_SHORT).show()
+            val bitmap = loadBitmapFromView(findViewById(R.id.main_container), 350, 450)
+            saveImage(bitmap)
         }
 
         // Create shake effect from xml resource
@@ -89,10 +86,8 @@ class AnimacionActivity : AppCompatActivity() {
         imgvCalavera?.startAnimation(shake)
 
         // Create shake effect from xml resource
-        val shake_bg = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.shake_calavera)
-        // View element to be shaken
-        // Perform animation
-        imgvBg?.startAnimation(shake_bg)
+        //val shake_bg = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.shake_bg)
+        //imgvBg?.startAnimation(shake_bg)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -182,39 +177,53 @@ class AnimacionActivity : AppCompatActivity() {
         imgvPhoto?.controller = controller
     }
 
-    companion object {
+    private fun shareCapturedPhoto() {
+        Log.e("mCaptureScreenPath",mCaptureScreenPath)
 
-        fun loadBitmapFromView(v: View, width: Int, height: Int): Bitmap {
-            Log.e("loadBitmapFromView","loadBitmapFromView")
-            val b = Bitmap.createBitmap(v.width, v.height, Bitmap.Config.ARGB_8888)
-            val c = Canvas(b)
-            v.layout(0, 0, v.width, v.height)
-            v.draw(c)
-            return b
+        //Share Intent
+        val shareIntent: Intent = Intent().apply {
+            action = Intent.ACTION_SEND
+            putExtra(Intent.EXTRA_STREAM, Uri.parse(mCaptureScreenPath))
+            putExtra(Intent.EXTRA_SUBJECT, resources.getText(R.string.send_to_subject));
+            putExtra(Intent.EXTRA_TEXT, resources.getText(R.string.send_to_body));
+            type = "image/jpeg"
+        }
+        startActivity(Intent.createChooser(shareIntent, resources.getText(R.string.send_to)))
+    }
+
+    fun loadBitmapFromView(v: View, width: Int, height: Int): Bitmap {
+        Log.e("loadBitmapFromView","loadBitmapFromView")
+        val b = Bitmap.createBitmap(v.width, v.height, Bitmap.Config.ARGB_8888)
+        val c = Canvas(b)
+        v.layout(0, 0, v.width, v.height)
+        v.draw(c)
+        return b
+    }
+
+    fun saveImage(bitmap: Bitmap) {
+        Log.e("saveImage","saveImage")
+        val root = Environment.getExternalStorageDirectory().toString()
+        val myDir = File(root + "/LibroGiuseppe")
+        myDir.mkdirs()
+        val generator = Random()
+        var n = 10000
+        n = generator.nextInt(n)
+        val fname = "Image-$n.jpg"
+        val file = File(myDir, fname)
+        mCaptureScreenPath = file.toURI().toString()
+        //  Log.i(TAG, "" + file);
+        if (file.exists())
+            file.delete()
+        try {
+            val out = FileOutputStream(file)
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, out)
+            out.flush()
+            out.close()
+        } catch (e: Exception) {
+            e.printStackTrace()
         }
 
-        fun saveImage(bitmap: Bitmap) {
-            Log.e("saveImage","saveImage")
-            val root = Environment.getExternalStorageDirectory().toString()
-            val myDir = File(root + "/LibroGiuseppe")
-            myDir.mkdirs()
-            val generator = Random()
-            var n = 10000
-            n = generator.nextInt(n)
-            val fname = "Image-$n.jpg"
-            val file = File(myDir, fname)
-            //  Log.i(TAG, "" + file);
-            if (file.exists())
-                file.delete()
-            try {
-                val out = FileOutputStream(file)
-                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, out)
-                out.flush()
-                out.close()
-            } catch (e: Exception) {
-                e.printStackTrace()
-            }
+        shareCapturedPhoto()
 
-        }
     }
 }

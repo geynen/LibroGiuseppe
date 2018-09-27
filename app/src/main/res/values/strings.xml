@@ -1,20 +1,23 @@
 <resources>
-    <string name="app_name">Libro Giuseppe</string>
+    <string name="app_name">La Ambulancia Catrina</string>
 
     <!-- Strings related to MainActivity-->
-    <string name="scan_barcode_button">Scan barcode</string>
-    <string name="no_barcode_captured">No barcode captured</string>
-    <string name="barcode_error_format">"Error reading barcode: %1$s"</string>
+    <string name="scan_barcode_button">Scanear QR</string>
+    <string name="no_barcode_captured">Captura el código QR de tu libro</string>
+    <string name="barcode_error_format">"Error leyendo el código: %1$s"</string>
 
     <!-- Strings related to barcode scanner -->
     <string name="ok">OK</string>
-    <string name="permission_camera_rationale">Access to the camera is needed for detection</string>
-    <string name="no_camera_permission">This application cannot run because it does not have the camera permission.  The application will now exit.</string>
-    <string name="low_storage_error">Face detector dependencies cannot be downloaded due to low device storage</string>
+    <string name="permission_camera_rationale">Acceso a la camara es necesario para la detección del código QR</string>
+    <string name="no_camera_permission">Esta aplicación no se puede ejecutar porque no tiene el permiso de la cámara. La aplicación ahora saldrá.</string>
+    <string name="low_storage_error">Las dependencias del detector QR no se pueden descargar debido al bajo almacenamiento del dispositivo.</string>
 
-    <string name="storage_permission_rationale_title">Storage permission required</string>
-    <string name="storage_permition_rationale_message">In order to take a picture, you must grant this permission!</string>
-    <string name="storage_permission_denied_message">Storage permission is required in order to take a photo with the camera</string>
+    <string name="storage_permission_rationale_title">Se requiere permiso de almacenamiento</string>
+    <string name="storage_permition_rationale_message">¡Para tomar una foto, debes otorgar este permiso!</string>
+    <string name="storage_permission_denied_message">Se requiere permiso de almacenamiento para tomar una foto con la cámara</string>
 
     <string name="send_to">Compartir por</string>
+    <string name="send_to_toast">Generando imagen para compartir...</string>
+    <string name="send_to_subject">La Ambulancia Catrina</string>
+    <string name="send_to_body">La Ambulancia Catrina. Libro de Giuseppe. Adquierela en tu librería mas cercana.</string>
 </resources>
