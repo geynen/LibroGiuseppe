@@ -49,6 +49,8 @@ class AnimacionActivity : AppCompatActivity() {
     var imgvCalavera: SimpleDraweeView? = null
     @JvmField @BindView(R.id.fab_share)
     var fabSharePhoto: FloatingActionButton? = null
+    @JvmField @BindView(R.id.fab_info)
+    var fabInfo: FloatingActionButton? = null
     @JvmField @BindView(R.id.imgv_lineas)
     var imgvLineas: SimpleDraweeView? = null
 
@@ -73,10 +75,19 @@ class AnimacionActivity : AppCompatActivity() {
             validatePermissions()
         }
         fabSharePhoto?.setOnClickListener {
-
+            fabSharePhoto?.visibility = View.INVISIBLE
+            fabInfo?.visibility = View.INVISIBLE
             //Toast.makeText(this,resources.getText(R.string.send_to_toast),Toast.LENGTH_SHORT).show()
             val bitmap = loadBitmapFromView(findViewById(R.id.main_container), 350, 450)
+            fabSharePhoto?.visibility = View.VISIBLE
+            fabInfo?.visibility = View.VISIBLE
             saveImage(bitmap)
+        }
+
+        fabInfo?.setOnClickListener {
+
+            val intent = Intent(this, PaginaDetalleActivity::class.java)
+            startActivity(intent)
         }
 
         // Create shake effect from xml resource

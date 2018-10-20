@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import com.google.android.gms.common.api.CommonStatusCodes
 import com.google.android.gms.vision.barcode.Barcode
 import com.geynen.librogiuseppe.barcode.BarcodeCaptureActivity
@@ -38,11 +39,16 @@ class MainActivity : AppCompatActivity() {
                     val p = barcode.cornerPoints
                     mResultTextView.text = barcode.displayValue
 
-                    val intent = Intent(this, AnimacionActivity::class.java)
-                    // To pass any data to next activity
-                    intent.putExtra("barcode", barcode.displayValue)
-                    // start your next activity
-                    startActivity(intent)
+                    Log.e(LOG_TAG, barcode.displayValue)
+                    if(barcode.displayValue.equals("Cuento5Catrina")) {
+                        val intent = Intent(this, AnimacionActivity::class.java)
+                        // To pass any data to next activity
+                        intent.putExtra("barcode", barcode.displayValue)
+                        // start your next activity
+                        startActivity(intent)
+                    }else{
+                        Toast.makeText(this,resources.getText(R.string.barcode_invalido), Toast.LENGTH_SHORT).show()
+                    }
                 } else
                     mResultTextView.setText(R.string.no_barcode_captured)
             } else

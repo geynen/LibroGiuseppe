@@ -42,3 +42,4 @@ repositories {
 kapt {
     generateStubs = true
 }
+apply plugin: 'kotlin-android-extensions'

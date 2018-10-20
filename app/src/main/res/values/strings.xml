@@ -5,6 +5,7 @@
     <string name="scan_barcode_button">Scanear QR</string>
     <string name="no_barcode_captured">Captura el código QR de tu libro</string>
     <string name="barcode_error_format">"Error leyendo el código: %1$s"</string>
+    <string name="barcode_invalido">Código QR invalido!!, escanea el código de barra de tu libro.</string>
 
     <!-- Strings related to barcode scanner -->
     <string name="ok">OK</string>
@@ -20,4 +21,9 @@
     <string name="send_to_toast">Generando imagen para compartir...</string>
     <string name="send_to_subject">La Ambulancia Catrina</string>
     <string name="send_to_body">La Ambulancia Catrina. Libro de Giuseppe. Adquierela en tu librería mas cercana.</string>
+
+    <string name="page_body">Me encontraba de viaje en Washington caminado por la calle cuando vi a un par de calaveras, no más altas que medio metro de altura, que adornaban una vitrina.\n\nNo me percaté en ellas más que el tiempo que se tarda en cruzar el frontis de una tienda de barrio, sin embargo tuve un raro sueño con ellas al llegar al hotel y tomar una pequeña siesta.\n\n
+Surrealistas y juguetonas entraron en mi subconsciente, regalándome un bizarro encuentro del que no me ocuparé aquí.\n\n
+Luego aprendí que se trataba de la Catrina, una figura creada por José Guadalupe Posada, que cobra cada vez mayor protagonismo en la cultura mexicana.\n\n
+De un tiempo atrás, quería contar una historia con dos elementos: una cuenta hacia atrás y de gran repercusión para su protagonista (un tic tac constante) y la exploración de cuánto estamos dispuestos a dar para redimirnos. Qué mejor que la Catrina, compañera de la muerta, para conducirnos en este relato.</string>
 </resources>
