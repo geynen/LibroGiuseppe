@@ -1,6 +1,7 @@
 package com.geynen.librogiuseppe
 
 import android.content.Intent
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
@@ -10,6 +11,12 @@ import android.widget.Toast
 import com.google.android.gms.common.api.CommonStatusCodes
 import com.google.android.gms.vision.barcode.Barcode
 import com.geynen.librogiuseppe.barcode.BarcodeCaptureActivity
+import android.view.Gravity
+import android.view.View
+import butterknife.BindView
+import io.github.douglasjunior.androidSimpleTooltip.SimpleTooltip
+
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -27,8 +34,29 @@ class MainActivity : AppCompatActivity() {
         }
 
         //Para desarrollo
-        //val intent = Intent(this, AnimacionActivity::class.java)
-        //startActivity(intent)
+        val intent = Intent(this, AnimacionActivity::class.java)
+        startActivity(intent)
+
+        var btnScan: View = findViewById(R.id.scan_barcode_button)
+
+        SimpleTooltip.Builder(this)
+                .anchorView(btnScan)
+                .text("Selecciona un código del libro")
+                .gravity(Gravity.TOP)
+                .animated(true)
+                .transparentOverlay(false)
+                .build()
+                .show()
+
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        /* Reproducir audios - Inicio */
+        val mp = MediaPlayer.create(this, R.raw.ambiente)
+        mp.start()
+        /* Reproducir audios - Fin */
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

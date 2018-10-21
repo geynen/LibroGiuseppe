@@ -5,4 +5,7 @@
 
     <dimen name="photo_height">200dp</dimen>
     <dimen name="photo_width">300dp</dimen>
+
+    <dimen name="calavera_height">130dp</dimen>
+    <dimen name="calavera_width">90dp</dimen>
 </resources>
