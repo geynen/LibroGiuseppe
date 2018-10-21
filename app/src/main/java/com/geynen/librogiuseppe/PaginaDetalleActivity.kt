@@ -11,6 +11,8 @@ class PaginaDetalleActivity : AppCompatActivity() {
         setContentView(R.layout.activity_pagina_detalle)
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setHomeButtonEnabled(true);
+
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {

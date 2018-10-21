@@ -80,6 +80,7 @@ class AnimacionActivity : AppCompatActivity() {
     private var mCurrentPhotoPath: String = ""
     private var mCaptureScreenPath: String = ""
     private var iliminado = false;
+    private lateinit var mp:MediaPlayer
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -176,14 +177,28 @@ class AnimacionActivity : AppCompatActivity() {
         val shake_nube_03 = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.shake_nube)
         imgvNube03?.startAnimation(shake_nube_03)
         /* Mover Nube 03 - Fin */
+
+        /* Reproducir audios - Inicio */
+        mp = MediaPlayer.create(this, R.raw.fear)
+        /* Reproducir audios - Fin */
     }
 
     override fun onResume() {
         super.onResume()
 
         /* Reproducir audios - Inicio */
-        val mp = MediaPlayer.create(this, R.raw.fear)
         mp.start()
+        /* Reproducir audios - Fin */
+    }
+
+    override fun onPause() {
+        super.onPause()
+
+        /* Reproducir audios - Inicio */
+        if (mp.isPlaying ()) {
+            mp.stop()
+            mp.seekTo (0)
+        }
         /* Reproducir audios - Fin */
     }
 
@@ -384,7 +399,7 @@ class AnimacionActivity : AppCompatActivity() {
     }
 
     private fun iluminar(){
-        if(iliminado){
+        if(!iliminado){
             imgvBg?.setImageDrawable(ContextCompat.getDrawable(
                     applicationContext,
                     R.mipmap.ambulancia

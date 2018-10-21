@@ -30,7 +30,8 @@
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.NoActionBar">
         </activity>
-        <activity android:name=".PaginaDetalleActivity"></activity>
+        <activity android:name=".PaginaDetalleActivity"
+            android:label="@string/app_name_catrina"></activity>
 
         <provider
             android:name="android.support.v4.content.FileProvider"

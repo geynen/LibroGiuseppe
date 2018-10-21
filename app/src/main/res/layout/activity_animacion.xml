@@ -79,8 +79,6 @@
         android:layout_width="360dp"
         android:layout_height="410dp"
         android:layout_marginBottom="32dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
         android:layout_marginTop="32dp"
         android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -92,10 +90,10 @@
 
     <com.facebook.drawee.view.SimpleDraweeView
         android:id="@+id/imgv_photo"
-        android:layout_width="75dp"
+        android:layout_width="80dp"
         android:layout_height="102dp"
         android:layout_marginBottom="295dp"
-        android:layout_marginStart="60dp"
+        android:layout_marginStart="68dp"
         app:actualImageScaleType="centerInside"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/imgv_bg"
@@ -104,10 +102,10 @@
 
     <com.facebook.drawee.view.SimpleDraweeView
         android:id="@+id/imgv_calavera"
-        android:layout_width="90dp"
+        android:layout_width="95dp"
         android:layout_height="130dp"
         android:layout_marginBottom="285dp"
-        android:layout_marginEnd="56dp"
+        android:layout_marginEnd="58dp"
         android:visibility="visible"
         app:actualImageScaleType="centerInside"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -13,7 +13,6 @@ import com.google.android.gms.vision.barcode.Barcode
 import com.geynen.librogiuseppe.barcode.BarcodeCaptureActivity
 import android.view.Gravity
 import android.view.View
-import butterknife.BindView
 import io.github.douglasjunior.androidSimpleTooltip.SimpleTooltip
 
 
@@ -21,6 +20,7 @@ import io.github.douglasjunior.androidSimpleTooltip.SimpleTooltip
 class MainActivity : AppCompatActivity() {
 
     private lateinit var mResultTextView: TextView
+    private lateinit var mp:MediaPlayer
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,9 +33,13 @@ class MainActivity : AppCompatActivity() {
             startActivityForResult(intent, BARCODE_READER_REQUEST_CODE)
         }
 
+        /* Reproducir audios - Inicio */
+        mp = MediaPlayer.create(this, R.raw.ambiente)
+        /* Reproducir audios - Fin */
+
         //Para desarrollo
-        val intent = Intent(this, AnimacionActivity::class.java)
-        startActivity(intent)
+        //val intent = Intent(this, AnimacionActivity::class.java)
+        //startActivity(intent)
 
         var btnScan: View = findViewById(R.id.scan_barcode_button)
 
@@ -54,8 +58,18 @@ class MainActivity : AppCompatActivity() {
         super.onResume()
 
         /* Reproducir audios - Inicio */
-        val mp = MediaPlayer.create(this, R.raw.ambiente)
         mp.start()
+        /* Reproducir audios - Fin */
+    }
+
+    override fun onPause() {
+        super.onPause()
+
+        /* Reproducir audios - Inicio */
+        if (mp.isPlaying ()) {
+            mp.stop()
+            mp.seekTo (0)
+        }
         /* Reproducir audios - Fin */
     }
 
